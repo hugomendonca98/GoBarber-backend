@@ -1,19 +1,28 @@
-import { v4 as uuid } from 'uuid';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm'
+
+import User from './User';
 
 // CRIANDO A INTERFACE/MODELS-MODELO DO OBJ, DITANDO QUAIS TIPOS DE DADOS OS ATRIBUTOS RECEBEM.
+@Entity('appointments')
 class Appointments {
+    @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    provider: string;
+    @Column()
+    provider_id: string;
 
+    @ManyToOne(() => User)
+    @JoinColumn({ name: 'provider_id' })
+    provider: User;
+
+    @Column('timestamp with time zone')
     date: Date;
 
-    constructor({ provider, date }: Omit<Appointments, 'id'>) {
-        //  MONTANDO O ONB PARA SER ARMAZENDADO.
-        this.id = uuid();
-        this.provider = provider;
-        this.date = date;
-    }
+    @CreateDateColumn()
+    created_at: Date;
+
+    @UpdateDateColumn()
+    updated_at: Date;
 }
 
 

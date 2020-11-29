@@ -1,34 +1,37 @@
 import { startOfHour } from 'date-fns';
+import { getCustomRepository } from 'typeorm';
+
+import AppError from '../Errors/appError';
+
 import Appointment from '../Models/Appointments';
 import AppointmentsRepository from '../Repositories/AppointmentsRepository';
 
 interface RequestDTO {
-    provider: string;
+    provider_id: string;
     date: Date;
 }
 
 class CreateAppointmentService {
-    private appointmentsRepository: AppointmentsRepository;
-    constructor(appointmentsRepository: AppointmentsRepository) {
-        this.appointmentsRepository = appointmentsRepository;
+    public async execute({ provider_id, date }: RequestDTO): Promise<Appointment> {
+        const appointmentsRepository = getCustomRepository(AppointmentsRepository);
 
-    }
-    public execute({ provider, date }: RequestDTO): Appointment {
         const appointmentDate = startOfHour(date);
 
         // USA O MÉTODO CRIADO NO REPOSITORY PARA VERIFICAR SE A DATA PASSADA JÁ EXISTE.
-        const findAppointmentInSameDate = this.appointmentsRepository.findByDate(appointmentDate);
+        const findAppointmentInSameDate = await appointmentsRepository.findByDate(appointmentDate);
 
         // CASO JÁ EXISTA UMA DATA IGUAL A PASSADA RETORNA ESSE ERRO:
         if (findAppointmentInSameDate) {
-            throw Error('This appointment is already booked');
+            throw new AppError('This appointment is already booked');
         }
 
         // SE A DATA PASSADA FOR UMA DATA NOVA ELE EXECUTA O MÉTODO CREATE DO NOSSO REPOSITORY.
-        const appointment = this.appointmentsRepository.create({
-            provider,
+        const appointment = appointmentsRepository.create({
+            provider_id,
             date: appointmentDate,
         });
+
+        await appointmentsRepository.save(appointment);
 
         return appointment;
     }

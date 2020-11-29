@@ -1,33 +1,37 @@
 import { Router } from 'express';
+import { getCustomRepository } from 'typeorm';
 import { parseISO } from 'date-fns';
+
 import AppointmentsRepository from '../Repositories/AppointmentsRepository';
 import CreateAppointmentService from '../Services/CreateAppointmentService';
 
+import ensureAuthenticated from '../Middlewares/ensureAuthenticated';
+
 const appointmentsRouter = Router();
-const appointmentsRepository = new AppointmentsRepository();
+
+appointmentsRouter.use(ensureAuthenticated);
 
 
-appointmentsRouter.get('/', (request, response) => {
-    const appointments = appointmentsRepository.all();
+appointmentsRouter.get('/', async (request, response) => {
+    const appointmentsRepository = getCustomRepository(AppointmentsRepository);
+    const appointments = await appointmentsRepository.find();
 
     return response.json(appointments);
 })
 
-appointmentsRouter.post('/', (request, response) => {
-    try {
-        const { provider, date } = request.body;
+appointmentsRouter.post('/', async (request, response) => {
 
-        // CONVERTE A DATA E HORA PASSADA.
-        const parsedDate = parseISO(date);
+    const { provider_id, date } = request.body;
 
-        const createAppointment = new CreateAppointmentService(appointmentsRepository);
+    // CONVERTE A DATA E HORA PASSADA.
+    const parsedDate = parseISO(date);
 
-        const appointment = createAppointment.execute({ date: parsedDate, provider })
+    const createAppointment = new CreateAppointmentService();
 
-        return response.json(appointment)
-    } catch (err) {
-        return response.status(400).json({ error: err.message })
-    }
+    const appointment = await createAppointment.execute({ date: parsedDate, provider_id })
+
+    return response.json(appointment)
+
 });
 
 
