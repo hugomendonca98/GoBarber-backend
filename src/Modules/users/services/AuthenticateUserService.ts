@@ -2,9 +2,9 @@ import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 
 import { sign } from 'jsonwebtoken';
-import authConfig from '../../../Config/auth';
+import authConfig from '@config/auth';
 
-import AppError from '../../../Shared/Errors/appError';
+import AppError from '@shared/Errors/appError';
 
 import User from '../infra/typeorm/entities/User';
 

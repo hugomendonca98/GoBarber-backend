@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm'
 
-import User from '../../../../users/infra/typeorm/entities/User';
+import User from '@modules/users/infra/typeorm/entities/User';
 
 // CRIANDO A INTERFACE/MODELS-MODELO DO OBJ, DITANDO QUAIS TIPOS DE DADOS OS ATRIBUTOS RECEBEM.
 @Entity('appointments')
