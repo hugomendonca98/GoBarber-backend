@@ -5,7 +5,7 @@ import fs from 'fs';
 import AppError from '../../../Shared/Errors/appError';
 
 import uploadConfig from '../../../Config/upload';
-import User from '../entities/User';
+import User from '../infra/typeorm/entities/User';
 
 interface Request {
     user_id: string;

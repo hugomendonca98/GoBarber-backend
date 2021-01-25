@@ -1,9 +1,9 @@
 import { Response, Request, NextFunction } from "express";
 import { verify } from 'jsonwebtoken';
 
-import authConfig from '../../Config/auth';
+import authConfig from '../../../../Config/auth';
 
-import AppError from '../Errors/appError';
+import AppError from '../../../Errors/appError';
 
 interface TokenPayload {
     iat: number;
