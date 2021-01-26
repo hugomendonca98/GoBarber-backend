@@ -4,9 +4,9 @@ import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 
-import routes from './Routes'
 import uploadConfig from '@config/upload';
 import AppError from '@shared/Errors/appError';
+import routes from './Routes';
 
 import '@shared/Infra/Typeorm';
 
@@ -33,7 +33,6 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
     });
 });
 
-
 app.listen(3333, () => {
-    console.log('Server Started on port 3333')
+    console.log('Server Started on port 3333');
 });
