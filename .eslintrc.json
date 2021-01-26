@@ -26,6 +26,8 @@
         "prettier/prettier": "error",
         "class-methods-use-this": "off",
         "@typescript-eslint/camelcase": "off",
+        "camelcase": "off",
+        "no-useless-constructor": "off",
         "@typescript-eslint/naming-convention": [
             "error",
             {
@@ -35,7 +37,7 @@
             }
             ],
         "@typescript-eslint/no-unused-vars": ["error", {
-            "argsIgnorePattern": ["_", "I"]
+            "argsIgnorePattern": "_"
         }],
         "import/extensions": [
             "error",

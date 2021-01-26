@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm'
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    CreateDateColumn,
+    UpdateDateColumn,
+    ManyToOne,
+    JoinColumn,
+} from 'typeorm';
 
 import User from '@modules/users/infra/typeorm/entities/User';
 
@@ -24,6 +32,5 @@ class Appointments {
     @UpdateDateColumn()
     updated_at: Date;
 }
-
 
 export default Appointments;
