@@ -10,6 +10,8 @@ import routes from './Routes';
 
 import '@shared/Infra/Typeorm';
 
+import '@shared/container';
+
 const app = express();
 
 app.use(cors());
