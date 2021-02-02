@@ -1,7 +1,7 @@
 import AppError from '@shared/Errors/appError';
 import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 
-import FakeUserRepository from '../repositories/fakes/fakeUsersRepository';
+import FakeUserRepository from '../repositories/fakes/FakeUsersRepository';
 import AuthenticateUserService from './AuthenticateUserService';
 import CreateUserService from './CreateUserService';
 
@@ -42,7 +42,7 @@ describe('AuthenticateUser', () => {
             fakeHashProvider,
         );
 
-        expect(
+        await expect(
             autheticanteUser.execute({
                 email: 'johndoe@example.com',
                 password: '12345',
@@ -68,7 +68,7 @@ describe('AuthenticateUser', () => {
             password: '12345',
         });
 
-        expect(
+        await expect(
             autheticanteUser.execute({
                 email: 'johndoe@example.com',
                 password: 'wrong-password',
