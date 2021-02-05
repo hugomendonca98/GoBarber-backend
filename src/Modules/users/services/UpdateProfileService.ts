@@ -4,7 +4,6 @@ import AppError from '@shared/Errors/appError';
 import IUsersRepository from '../repositories/IUsersRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 import User from '../infra/typeorm/entities/User';
-import passwordRouter from '../infra/http/routes/password.routes';
 
 interface IRequest {
     user_id: string;
@@ -20,7 +19,7 @@ class UpdateProfileService {
         @inject('UsersRepository')
         private usersRepository: IUsersRepository,
 
-        @inject('StorageProvider')
+        @inject('HashProvider')
         private hashProvider: IHashProvider,
     ) {}
 
