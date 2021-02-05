@@ -21,7 +21,7 @@
 
 **Requisitos Funcionais (RF)**
 
-- O usuário deve poder atualizar o seu nome, email, senha e foto;
+- O usuário deve poder atualizar o seu nome, email, senha;
 
 **Requisitos Não Funcionais (RNF)**
 
