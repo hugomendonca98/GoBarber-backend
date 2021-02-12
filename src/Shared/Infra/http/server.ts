@@ -1,4 +1,5 @@
 import 'reflect-metadata'; // para poder o ts entender a sintax de entidades.
+import 'dotenv/config';
 
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
