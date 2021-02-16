@@ -5,3 +5,4 @@ coverage
 !temp/.gitkeep
 .env
 ormconfig.json
+.log
