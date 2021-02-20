@@ -15,7 +15,7 @@ export default {
     defaults: {
         from: {
             email: 'gobarber@hugomendonca.net',
-            name: 'Hugo Mendonça',
+            name: 'Equipe GoBarber',
         },
     },
 } as IMailConfig;
