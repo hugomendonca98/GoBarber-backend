@@ -1,7 +1,5 @@
-import { NullableBoolean } from 'aws-sdk/clients/budgets';
-
 export default interface ICacheProvider {
-    save(key: string, value: string): Promise<void>;
-    recovery(key: string): Promise<string | null>;
+    save(key: string, value: any): Promise<void>;
+    recovery<T>(key: string): Promise<T | null>;
     invalidate(key: string): Promise<void>;
 }
