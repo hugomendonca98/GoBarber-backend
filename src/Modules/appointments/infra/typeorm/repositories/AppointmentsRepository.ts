@@ -4,7 +4,6 @@ import IAppointmentsRepository from '@modules/appointments/repositories/IAppoint
 import ICreateAppointmentDTO from '@modules/appointments/dtos/ICreateAppointmentDTO';
 import IFindAllInMonthFromProviderDTO from '@modules/appointments/dtos/IFindAllInMonthFromProviderDTO';
 import IFindAllInDayFromProviderDTO from '@modules/appointments/dtos/findAllInDayFromProviderDTO';
-import { String } from 'aws-sdk/clients/acm';
 import Appointments from '../entities/Appointments';
 
 class AppointmentsRepository implements IAppointmentsRepository {
