@@ -215,7 +215,7 @@ no request body
   ]
 ```
 
-# Mostrando as horas disponíveis em determinado dia disponíveis para agendamentos do prestador de serviços
+# Mostrando as horas disponíveis em determinado dia para agendamentos do prestador de serviços
 ``GET /providers/dfec4a31-2dbb-4aa1-85e8-f710cb4064b6/day-availability``
 
 **Exemplo de entrada de dados (JSON):**
@@ -244,7 +244,7 @@ no request body
   ]
 ```
 
-# Mostrando as horas disponíveis em determinado dia para agendamentos do prestador de serviços
+# Mostrando todos os prestadores de serviçoes, exceto o prestador logado na aplicação.
 ``GET /providers``
 
 **Exemplo de entrada de dados (JSON):**
