@@ -244,7 +244,7 @@ no request body
   ]
 ```
 
-# Mostrando as horas disponíveis em determinado dia disponíveis para agendamentos do prestador de serviços
+# Mostrando as horas disponíveis em determinado dia para agendamentos do prestador de serviços
 ``GET /providers``
 
 **Exemplo de entrada de dados (JSON):**
