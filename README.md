@@ -1,80 +1,110 @@
-# Recuperação de senha
+# GoBarber-backend - NodeJs & Typeorm
 
-**Requisitos Funcionais (RF)**
+Back-end incluindo as últimas funcionalidades do app e também aprendendo conceitos como MongoDB, variáveis ambiente, validação, cache, segurança, etc.
 
-- O usuário deve poder recuperar sua senha informando o seu e-mail;
-- O usuário deve receber um e-mail com instruções de recuperação de senha;
-- O usuário deve poder resetar sua senha;
+# Rotas da aplicação.
+**Rotas de usuários**
 
-**Requisitos Não Funcionais (RNF)**
+# Criando um novo usuário
+``POST /users``
 
-- Utilizar Mailtrap para testar envios em ambiente de dev;
-- Utilizar Amazon SES para envios em produção;
-- O envio de e-mails deve acontecer em segundo plano (Background job);
+**Exemplo de entrada de dados (JSON):**
+```
+{
+  "name": "John Doe",
+  "email": "johndoe@gmail.com",
+  "password":  "teste"
+}
+```
 
-**Regras de Negocio (RN)**
+**Exemplo de saida de dados esperada (JSON):**
+```
+{
+  "name": "John Doe",
+  "email": "johndoe@gmail.com",
+  "id": "6598ec03-9c47-463c-bf3e-18eb79e79325",
+  "created_at": "2021-03-08T23:17:24.762Z",
+  "updated_at": "2021-03-08T23:17:24.762Z",
+  "avatar_url": null
+}
+```
 
-- O link enviado por e-mail para resetar senha, deve expirar em 2h;
-- O usuário precisa confirmar a nova senha ao resetar a sua senha;
+# Authenticando um usuário
+``POST /sessions``
 
-# Atualização do perfil
+**Exemplo de entrada de dados (JSON):**
+```
+{
+  "email": "johndoe@gmail.com",
+  "password":  "teste"
+}
+```
 
-**Requisitos Funcionais (RF)**
+**Exemplo de saida de dados esperada (JSON):**
+```
+{
+  "user": {
+    "id": "b6324b63-b98e-41c3-8c4b-56cf63421a24",
+    "name": "John Doe",
+    "email": "johndoe@gmail.com",
+    "avatar": "2f242784d46de41ad479-unnamed.png",
+    "created_at": "2021-03-01T03:03:07.343Z",
+    "updated_at": "2021-03-01T03:04:40.655Z",
+    "avatar_url": null
+  },
+  "token": "TOKEN_EXAMPLE"
+}
+```
 
-- O usuário deve poder atualizar o seu nome, email, senha;
+# Solicitação de recuperação de senha
+``POST /password/forgot``
 
-**Requisitos Não Funcionais (RNF)**
+**Exemplo de entrada de dados (JSON):**
+```
+{
+  "email": "johndoe@gmail.com"
+}
+```
 
-- undefined
+**Exemplo de saida de dados esperada (JSON):**
 
-**Regras de Negocio (RN)**
+```no response body```
 
-- O usuário não pode alterar seu e-mail para um e-mail já utilizado;
-- Para atualizar sua senha, o usuário deve informar a senha antiga;
-- Para atualizar sua senha precisa confirmar a sua nova senha;
+# Resetando a senha do usuário
+``POST /password/forgot``
 
+**Exemplo de entrada de dados (JSON):**
+```
+{
+   "password": "novasenha",
+   "password_confirmation": "novasenha",
+   "token": "bf793eb2-61f8-434a-8465-fdd489548eab"
+}
+```
 
-# Painel do prestador
+**Exemplo de saida de dados esperada (JSON):**
 
-**Requisitos Funcionais (RF)**
+```no response body```
 
-- O usuário deve poder listar o seus agendamentos de um dia específico;
-- O prestador deve receber uma notificação sempre que houver um novo agendamento;
-- O prestador deve poder visualizar as notificações não lidas;
+# Mostrando o perfil do usuário
+``POST /profile``
 
-**Requisitos Não Funcionais (RNF)**
+**Exemplo de entrada de dados (JSON):**
 
-- Os agendamentos do prestador no dia devem ser armazenados em cache;
-- As notificações do prestador devem ser armazenadas no mongoDB;
-- As notificações do prestador devem ser enviadas em tempo-real utilizando Socket.io;
+```no request body```
 
-**Regras de Negocio (RN)**
+**Exemplo de saida de dados esperada (JSON):**
 
-- A notificação deve ter um status de lida ou não-lida, para que o prestador possa controlar;
-
-
-# Agendamento de serviços
-
-**Requisitos Funcionais (RF)**
-
-- O usuário deve poder listar todos os prestadores de serviço cadastrados;
-- Ao escolher o prestador, o usuário deve poder listar os dias de um mês com pelo menos um horário disponível;
-- O usuário deve poder listar horários disponíveis em um dia específico de um prestador;
-- O usuário deve poder realizar um novo agendamento com um prestador;
-
-**Requisitos Não Funcionais (RNF)**
-
-- A listagem de prestadores deve ser armazenada em cache;
-
-
-**Regras de Negocio (RN)**
-
-- Cada agendamento deve durar 1h exatamente;
-- Os agendamentos devem estar disponíveis entre 8hrs ás 18h (Primeiro as 8h, último as 17h);
-- O usário não pode agendar em um horário já ocupado;
-- O usuário não pode agendar em um horário que já passou;
-- O usuário não pode agendar serviços consigo mesmo;
-
-
+```
+{
+  "id": "b6324b63-b98e-41c3-8c4b-56cf63421a24",
+  "name": "John Doe",
+  "email": "johndoe@gmail.com",
+  "avatar": "2f242784d46de41ad479-unnamed.png",
+  "created_at": "2021-03-01T03:03:07.343Z",
+  "updated_at": "2021-03-08T23:41:50.200Z",
+  "avatar_url": null
+}
+```
 
 
